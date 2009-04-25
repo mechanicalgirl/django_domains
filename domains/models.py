@@ -3,8 +3,8 @@ from django.db import models
 class Domain(models.Model):
     domain = models.CharField(max_length=255)
 
-    def __unicode__(self):
-        return u"%s" % self.domain
+    def __str__(self):
+        return self.domain
 
 class Registrar(models.Model):
     name = models.CharField(max_length=255, blank=True)
@@ -13,8 +13,8 @@ class Registrar(models.Model):
     username = models.CharField(max_length=255, blank=True)
     password = models.CharField(max_length=255, blank=True)
 
-    def __unicode__(self):
-        return u"%s" % self.name
+    def __str__(self):
+        return self.name
 
 class Host(models.Model):
     name = models.CharField(max_length=255, blank=True)
@@ -23,8 +23,8 @@ class Host(models.Model):
     username = models.CharField(max_length=255, blank=True)
     password = models.CharField(max_length=255, blank=True)    
 
-    def __unicode__(self):
-        return u"%s" % self.name
+    def __str__(self):
+        return self.name
 
 class DomainRegistration(models.Model):
     domain = models.ForeignKey(Domain, unique=True)
@@ -34,8 +34,8 @@ class DomainRegistration(models.Model):
     active = models.BooleanField(default=True)
     keep_active = models.BooleanField(default=True)    
 
-    def __unicode__(self):
-        return u"%s Registration" % self.domain
+    def __str__(self):
+        return "%s Registration" % self.domain
 
     class Meta:
         ordering = ['expires']
@@ -49,8 +49,8 @@ class DomainHosting(models.Model):
     active = models.BooleanField(default=True)
     keep_active = models.BooleanField(default=True)
 
-    def __unicode__(self):
-        return u"%s Hosting" % self.domain
+    def __str__(self):
+        return "%s Hosting" % self.domain
 
     class Meta:
         ordering = ['expires']
